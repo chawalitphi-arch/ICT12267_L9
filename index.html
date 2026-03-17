@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Website</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg" 
+     style="width:60px; margin-bottom:10px;">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <style>
+    /* ===== Dark Mode ===== */
+    body {
+      background-color: #0f0f0f;
+      color: #fff;
+    }
+    
+    /* Navbar */
+    .navbar {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+    }
+    
+    .nav-link:hover {
+      color: #ff4b2b !important;
+    }
+    
+    /* Banner */
+    .banner {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1524985069026-dd778a71c7b4') center/cover no-repeat;
+      height: 400px;
+    }
+    
+    .banner::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+    }
+    
+    .banner .text-center {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Card */
+    .card {
+      background: #1c1c1c;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+    
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+    }
+    
+    .card img {
+      height: 400px;
+      object-fit: cover;
+    }
+    
+    /* ปุ่ม */
+    .btn-primary {
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+      border: none;
+    }
+    
+    /* Modal */
+    .modal-content {
+      background: #1c1c1c;
+      color: white;
+    }
+    
+    /* ===== รูปโปรไฟล์ใน Modal ===== */
+    .person {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .person img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+      border: 2px solid #ff4b2b;
+    }
+    
+    /* Form */
+    input, textarea {
+      background: #1c1c1c !important;
+      color: white !important;
+      border: 1px solid #333 !important;
+    }
+    
+    /* Footer */
+    footer a:hover {
+      color: #ff4b2b;
+      transform: scale(1.2);
+    }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <!-- โลโก้ -->
+    <a class="navbar-brand" href="#">🎬 MovieWeb Anime</a>
+
+    <!-- ปุ่ม Collapse -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- เมนู -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+
+        <!-- Dropdown -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">ภาพยนตร์จากอนิเมะ</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Mobile Suit Gundam Wing : Endless Waltz</a></li>
+            <li><a class="dropdown-item" href="#">Gundam hathaway 2 </a></li>
+            <li><a class="dropdown-item" href="#">Gundam Seed Freedom</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#about">เกี่ยวกับเรา</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#contact">ติดต่อเรา</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= BANNER ================= -->
+<div class="banner">
+  <div class="text-center">
+    <h1>ยินดีต้อนรับสู่โลกภาพยนตร์ 🎥</h1>
+    <p>รวมหนังดัง หนังใหม่ อัปเดตตลอดเวลาเกี่ยวกับอนิเมะgundam</p>
+  </div>
+</div>
+
+<!-- ================= CARDS ================= -->
+<div class="container mt-5">
+  <div class="row g-4">
+
+    <!-- Card 1 -->
+    <div class="col-md-4">
+      <div class="card">
+        <img src="https://m.media-amazon.com/images/M/MV5BMDJmOTk4NzMtMjNiYy00NmEyLTkyODMtMzE4NTdmMzM4MzM1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="card-img-top">
+        <div class="card-body text-center">
+          <h5>Mobile Suit Gundam Wing : Endless Waltz</h5>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#movie1">ดูรายละเอียด</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-4">
+      <div class="card">
+        <img src="https://m.media-amazon.com/images/M/MV5BYjdmOTI5ZmQtOTBiOS00YmIwLWJjMDMtMWQ5MDk3YTQyYTI5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="card-img-top">
+        <div class="card-body text-center">
+          <h5>Gundam hathaway 2</h5>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#movie2">ดูรายละเอียด</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-4">
+      <div class="card">
+        <img src="https://m.media-amazon.com/images/M/MV5BODlhMDBjM2UtMDVjOC00NGRmLTlmZWUtZjBhYTY3MDU1MTdiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="card-img-top">
+        <div class="card-body text-center">
+          <h5>Gundam Seed Freedom</h5>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#movie3">ดูรายละเอียด</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= MODALS ================= -->
+<div class="modal fade" id="movie1">
+  <div class="modal-dialog">
+    <div class="modal-content p-3">
+      <h4>Mobile Suit Gundam Wing : Endless Waltz</h4>
+      <img src="data:image/jpeg;base64,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">
+      <p><b>ผู้กำกับ: Yasunao Aoki</b> ตัวอย่าง</p>
+      <img src="https://m.media-amazon.com/images/M/MV5BMDJmOTk4NzMtMjNiYy00NmEyLTkyODMtMzE4NTdmMzM4MzM1XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg">
+      <p><b>นักแสดง: Heero Yuy </b> ตัวอย่าง</p>
+      <p><b>เนื้อเรื่อง:  เป็นเรื่องราวบทสรุป 1 ปีหลังสงคราม (A.C. 196) โลกและโคโลนี่มีสันติภาพชั่วคราว นักบินกันดั้มทั้ง 5 ตัดสินใจทำลายหุ่นทิ้ง แต่เกิดเหตุลักพาตัว "ริลีน่า" โดยกลุ่มกบฏของ "แมรี่เมอา" ทำให้เหล่านักบินต้องกลับมาขับกันดั้ม (ดีไซน์ใหม่) อีกครั้งเพื่อยุติสงครามครั้งสุดท้าย </b> เรื่องราวสายลับภารกิจ</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="movie2">
+  <div class="modal-dialog">
+    <div class="modal-content p-3">
+      <h4>Gundam hathaway 2</h4>
+      <img src="data:image/jpeg;base64,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">
+      <p><b>ผู้กำกับ: Shuko Murase </b> ตัวอย่าง</p>
+      <img src="https://m.media-amazon.com/images/M/MV5BYjdmOTI5ZmQtOTBiOS00YmIwLWJjMDMtMWQ5MDk3YTQyYTI5XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg">
+      <p><b>นักแสดง: Hathaway Noa </b> ตัวอย่าง</p>
+      <p><b>เนื้อเรื่อง: เล่าเรื่องราว 12 ปีหลัง "การกบฏของชาร์" เมื่อฮาธาเวย์ โนอา บุตรชายของไบรท์ โนอา ก่อตั้งองค์กรต่อต้าน "มาฟตี" เพื่อลอบสังหารเจ้าหน้าที่สหพันธ์โลกที่ทุจริตและกดขี่ประชาชน โดยเขาขับหุ่น Ξ Gundam ท่ามกลางความขัดแย้งระหว่างอุดมการณ์ ความรัก และบาดแผลในอดีต </b> การต่อสู้และการเติบโต</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="movie3">
+  <div class="modal-dialog">
+    <div class="modal-content p-3">
+      <h4>Gundam Seed Freedom</h4>
+      <img src="https://global.honda/en/GOLDWING/world/gundam-seed-interview/img/profile.jpg">
+      <p><b>ผู้กำกับ: Mitsuo Fukuda</b> ตัวอย่าง</p>
+      <img src="https://m.media-amazon.com/images/M/MV5BODlhMDBjM2UtMDVjOC00NGRmLTlmZWUtZjBhYTY3MDU1MTdiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg">
+      <p><b>นักแสดง:Kira Yamato </b> ตัวอย่าง</p>
+      <p><b>เนื้อเรื่อง:เล่าเรื่องราวของ คิระ ยามาโตะ และพรรคพวกในองค์กร COMPASS ที่ต้องจัดการกลุ่มต่อต้านบลูคอสมอส แต่ต้องเผชิญกับแผนการหักหลังและศัตรูใหม่ที่แข็งแกร่งกว่าเดิมจากประเทศ "ฟาวเดชัน" เพื่อก้าวข้ามความขัดแย้งระหว่างมนุษย์ธรรมดา (Natural) และโคดิเนเตอร์ </b> สงครามและอิสรภาพในโลก Gundam</p>
+    </div>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<div id="about" class="container mt-5">
+  <h2>เกี่ยวกับเรา</h2>
+  <p>เว็บไซต์นี้สร้างขึ้นเพื่อรวบรวมข้อมูลภาพยนตร์และรีวิวต่าง ๆ สำหรับผู้ที่รักหนังอนิเมะ</p>
+</div>
+
+<!-- ================= CONTACT ================= -->
+<div id="contact" class="container mt-5">
+  <h2>ติดต่อเรา</h2>
+  <h2>ชวลิต พิชญเมธี 08133322255</h2>
+      
+  <form>
+    <div class="mb-3">
+      <label>ชื่อ-นามสกุล</label>
+      <input type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label>อีเมล</label>
+      <input type="email" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label>ข้อความ</label>
+      <textarea class="form-control"></textarea>
+    </div>
+
+    <button class="btn btn-success">ส่งข้อมูล</button>
+  </form>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-dark text-white text-center p-4 mt-5">
+  <div>
+    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+    <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+    <a href="#" class="text-white"><i class="bi bi-line"></i></a>
+  </div>
+  <p class="mt-3">© 2025 Movie By Chawalit Phichayamethee 68022822</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+</nav>
